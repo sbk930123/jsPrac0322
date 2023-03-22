@@ -1,0 +1,74 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+}
+
+#gage {
+  position: fixed;
+  left: 0;
+  top: 100px;
+}
+
+.navbar-brand {
+  font-size: 30px;
+}
+
+.list-group {
+  height: 0px;
+  overflow: hidden;
+  transition: height 1s ease-in-out;
+}
+
+.show {
+  height: 206px;
+}
+
+.main-bg {
+  padding: 100px 20px;
+  background: lightgrey;
+}
+
+.black-bg {
+  width : 100%;
+  height : 100%;
+  transform: translateY(-100%);
+  overflow: hidden;
+  position : fixed;
+  background : rgba(0,0,0,0.5);
+  z-index : 5;
+  padding: 30px;
+  visibility: hidden;
+  transition: all 1s ease-in-out;
+}
+.white-bg {
+  background: white;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+.show-modal {
+  visibility: visible;
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+.dark {
+  background-color: #000;
+  color: #fff;
+}
+
+.slide-container {
+  width: 300vw;
+  transform: translateX(-000vw);
+  transition: transform 1s ease-in-out;
+}
+
+.slide-box {
+  width: 100vw;
+  float: left;
+}
+
+.slide-box img {
+  width: 100%;
+}

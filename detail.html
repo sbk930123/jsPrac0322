@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="detail.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class="container mt-3">
+    <div class="card p-3">
+      <span>상품명</span>
+      <span>가격</span>
+    </div>
+  </div> 
+
+  <form class="container my-5 form-group">
+    <p>상품선택</p>
+    <select class="form-select mt-2" id="selectProduct">
+      <option>모자</option>
+      <option>셔츠</option>
+      <option>바지</option>
+    </select>
+    <select class="form-select mt-2 hidden" id="selectSize">
+      <option>95</option>
+      <option>100</option>
+    </select>
+  </form>
+  
+  <script>
+
+    // Q. 평균점수 계산기 만들기 
+  
+    // 어떤 함수에 
+    // 기존 모의고사 성적들을 array 자료에 전부 담아 첫 파라미터로 입력하고 
+    // 이번 11월 모의고사 성적을 둘 째 파라미터로 입력하면  
+    // 11월 성적이 기존 성적들의 평균에 비해 얼마나 우수한지 결과를 알려주고 싶습니다. 
+    // 어떻게 함수를 만들면 될까요?
+    
+    // 동작예시 :
+    // 함수([10, 20, 30, 40, 50], 40) 이렇게 쓰면 콘솔창에 "평균보다 10점이 올랐네요"가 떠야합니다. (평균이 30이니까)
+    // 함수([40, 40, 40], 20) 이렇게 쓰면 콘솔창에 "평균보다 20점이 떨어졌네요 재수추천"이 떠야합니다. (평균이 40이니까)
+
+    function 함수(x, y) {
+      // console.log(x.length);
+      let result = 0;
+      x.forEach(function(data, index) {
+        result = result + data;
+      })
+
+      let reduce = result / x.length;
+      let final = reduce - y;
+
+      if(final < 0) {
+        console.log('평균보다 ' + -final + '점이 올랐네요.');
+      } else {
+        console.log('평균보다 ' + final + '점이 떨어졌네요 재수추천'); 
+      }
+      // for(let i = 0; i < x.array.length; i++);
+    }
+
+    for(let i = 2; i < 10; i++) {
+      for(let z = 1; z < 10; z++) {
+        // console.log(i*z)
+      }
+    }
+
+
+    let 출석부 = ['흥민', '영희', '철수', '재석'];
+
+    function 이름찾기(e){
+      //여기다 코드 짜십쇼
+      // array에서 이름을 찾아주는 함수를 만들고 있습니다.
+      // 함수 안에 파라미터로 이름을 집어넣으면
+      // 그 이름이 출석부에 있으면 콘솔창에 출력해주는 함수를 만들어봅시다. 
+      // 어떻게 만들면 될까요? 
+
+      출석부.forEach(function(data) {
+        if(e == data) {
+          return console.log('있어요');
+        }
+      });
+    }
+
+    let selectProduct = $('#selectProduct');
+    let selectSize = $('#selectSize');
+
+    let shirtsSize = [95, 100, 105, 110, 115];
+    let pantsSize = [28, 30, 32, 34, 36, 38];
+
+    // 유저가 셔츠고르면 두번째 셀렉트에 hidden 빼주세요!
+
+    selectProduct.on('input', function(e) {
+      if(e.target.value == '셔츠') {
+        selectSize.removeClass('hidden');
+        selectSize.html('');
+        shirtsSize.forEach(function(data) {
+          selectSize.append('<option>'+ data +'</option>');
+        });
+      } else if(e.target.value == '바지') {
+        selectSize.removeClass('hidden');
+        selectSize.html('');
+        pantsSize.forEach(function(data) {
+          selectSize.append('<option>'+ data +'</option>');
+        });
+      } else {
+        selectSize.addClass('hidden');
+      }
+    })
+
+    var car2 = { name : '소나타', price : [50000, 3000, 4000]}
+
+    $('span').eq(1).html(car2['price'][0])
+
+  </script>
+
+  <div class="container mt-5">
+    <ul class="list">
+      <li class="tab-button" data-id="0">Products</li>
+      <li class="tab-button orange" data-id="1">Information</li>
+      <li class="tab-button" data-id="2">Shipping</li>
+    </ul>
+    <div class="tab-content">
+      <p>상품설명입니다. Product</p>
+    </div>
+    <div class="tab-content show">
+      <p>스펙설명입니다. Information</p>
+    </div>
+    <div class="tab-content">
+      <p>배송정보입니다. Shipping</p>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</body>
+</html>
