@@ -199,6 +199,90 @@
 
     <script>
 
+      var 지금사진 = 1;
+
+      $('.slide-next').on('click', function() {
+        if(지금사진 <= 2) {
+          $('.slide-container').css('transform', 'translateX(-' + 지금사진 + '00vw)');
+          지금사진++;
+        } else {
+          $('.slide-container').css('transform', 'translateX(00vw)');
+          지금사진 = 1;
+        }
+      });
+
+      $('.slide-prev').on('click', function() {
+        if(지금사진 == 2) {
+          $('.slide-container').css('transform', 'translateX(00vw)');
+          지금사진 = 1;
+        } else if(지금사진 == 3) {
+          $('.slide-container').css('transform', 'translateX(-100vw)');
+          지금사진 = 2;
+        } else {
+          $('.slide-container').css('transform', 'translateX(-200vw)');
+          지금사진 = 3;
+        }
+      })
+
+      // 터치 및 드래그 이벤트 start 절취선 \\ 
+
+      let 시작좌표 = 0;
+      let 눌렀냐 = false;
+      let 이동거리 = 0;
+      $('.slide-box').eq(0).on('mousedown', function(e) {
+        $('.slide-container').removeClass('trst');
+        시작좌표 = e.clientX;
+        눌렀냐 = true;
+      });
+
+      $('.slide-box').eq(0).on('mousemove', function(e) {
+        이동거리 = e.clientX - 시작좌표;
+        console.log(이동거리);
+        if(눌렀냐 == true) {
+          $('.slide-container').css('transform', `translateX(${e.clientX - 시작좌표}px)`)
+        }  
+      });
+
+      $('.slide-box').eq(0).on('mouseup', function(e) {
+        눌렀냐 = false;
+        if(이동거리 < -100) {
+          $('.slide-container').css('transform', 'translateX(-100vw)');
+          $('.slide-container').addClass('trst');
+          지금사진 = 2;
+        } else {
+          $('.slide-container').css('transform', 'translateX(000vw)');
+          $('.slide-container').addClass('trst')
+        }
+      });
+
+      $('.slide-box').eq(0).on('touchstart', function(e) {
+        $('.slide-container').removeClass('trst');
+        시작좌표 = e.touches[0].clientX;
+        눌렀냐 = true;
+      });
+
+      $('.slide-box').eq(0).on('touchmove', function(e) {
+        이동거리 = e.touches[0].clientX - 시작좌표;
+        console.log(이동거리);
+        if(눌렀냐 == true) {
+          $('.slide-container').css('transform', `translateX(${e.touches[0].clientX - 시작좌표}px)`)
+        }  
+      });
+
+      $('.slide-box').eq(0).on('touchend', function(e) {
+        눌렀냐 = false;
+        if(e.changedTouches[0].clientX - 시작좌표 < -100) {
+          $('.slide-container').css('transform', 'translateX(-100vw)');
+          $('.slide-container').addClass('trst');
+          지금사진 = 2;
+        } else {
+          $('.slide-container').css('transform', 'translateX(000vw)');
+          $('.slide-container').addClass('trst')
+        }
+      });
+
+      // 터치 및 드래그 이벤트 end 절취선 \\ 
+
       $('.slide-1').on('click', function() {
         $('.slide-container').css('transform', 'translateX(0vw)');
       });
@@ -208,22 +292,6 @@
       $('.slide-3').on('click', function() {
         $('.slide-container').css('transform', 'translateX(-200vw)');  
       });
-
-
-
-
-
-      var 지금사진 = 1;
-
-      $('.slide-next').on('click', function() {
-        $('.slide-container').css('transform', 'translateX(-' + 지금사진 + '00vw)');
-        지금사진++;
-      });
-
-      $('.slide-prev').on('click', function() {
-        $('.slide-container').css('transform', 'translateX(' + 지금사진 + '00vw)');
-        지금사진--;
-      })
 
     </script>
 
